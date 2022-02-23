@@ -1,0 +1,16 @@
+server:
+  port: 7001
+
+#Eureka配置
+eureka:
+  instance:
+    # 单机的配置：hostname: localhost #Eureka 服务端的实例名称
+    # 集群的配置(关联): 在C:\Windows\System32\drivers\etc\hosts配置 三个集群 127.0.0.1 eureka7001.com
+    hostname: eureka7001.com #Eureka 服务端的实例名称
+  client:
+    register-with-eureka: false # 表示是否向eureka注册中心注册自己
+    fetch-registry: false       # fetch-registry如果为false，则表示自己为注册中心
+    service-url:                # 监控页面，重写defaultZone，不用默认的
+      # 单机的配置：defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 集群的配置(关联，与7002、7003关联)
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
